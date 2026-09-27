@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Arlitz 💖</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    overflow:hidden;
+    height:100vh;
+}
+
+.page{
+    position:absolute;
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:30px;
+    color:white;
+    transition:opacity .5s ease;
+    background-size:cover;
+    background-position:center;
+}
+
+.page::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    z-index:0;
+}
+
+.content{
+    position:relative;
+    z-index:1;
+    max-width:700px;
+}
+
+h1{
+    margin-bottom:20px;
+    line-height:1.4;
+}
+
+p{
+    font-size:1.2rem;
+    line-height:1.7;
+    margin-bottom:30px;
+}
+
+button{
+    border:none;
+    padding:14px 28px;
+    border-radius:999px;
+    cursor:pointer;
+    font-size:1rem;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+#page1{
+    /*
+    ===========================
+    BACKGROUND IMAGE PAGE 1
+    Replace filename below
+    ===========================
+    */
+    background-image:url("PAGE1_IMAGE.jpg");
+}
+
+#page2{
+    /*
+    ===========================
+    BACKGROUND IMAGE PAGE 2
+    Replace filename below
+    ===========================
+    */
+    background-image:url("PAGE2_IMAGE.jpg");
+    display:none;
+}
+
+.proceed-btn{
+    background:white;
+    color:#ff4f81;
+    font-weight:bold;
+}
+
+.button-group{
+    display:flex;
+    gap:15px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+.yes-btn{
+    background:#4CAF50;
+    color:white;
+    font-weight:bold;
+}
+
+.no-btn{
+    background:#ff4d4d;
+    color:white;
+    font-weight:bold;
+}
+
+.success{
+    margin-top:30px;
+    font-size:1.5rem;
+    display:none;
+    animation:pop .5s ease;
+}
+
+@keyframes pop{
+    from{
+        transform:scale(.5);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div id="page1" class="page">
+    <div class="content">
+        <h1>Hi! 👋</h1>
+
+        <p>
+            Sorry things have been boring lately 😆<br><br>
+
+            Pero mag October na... 🍂<br><br>
+
+            Soooo dahil baliw ako minsan at may free time...
+            <br><br>
+            charannnn ✨
+            <br><br>
+            tiny website.
+        </p>
+
+        <button class="proceed-btn" onclick="goToPage2()">
+            Proceed ➜
+        </button>
+    </div>
+</div>
+
+<!-- PAGE 2 -->
+<div id="page2" class="page">
+    <div class="content">
+
+        <h1>Important Announcement 📢</h1>
+
+        <p>
+            Alam mo need mo
+            <br>
+            (besides ako 😌)
+            <br><br>
+
+            is spending time with me at tumingin
+            ng mga bagay bagay.
+            <br><br>
+
+            Makati tayo this October.
+            <br><br>
+
+            Tara G? ✨
+        </p>
+
+        <div class="button-group">
+            <button class="yes-btn" onclick="yesClicked()">
+                Yes 💖
+            </button>
+
+            <button id="noBtn" class="no-btn" onclick="shrinkNo()">
+                No 🙄
+            </button>
+        </div>
+
+        <div id="successMessage" class="success">
+            Yaaay! 🥳
+            <br><br>
+            See you in Makati 😌💖
+        </div>
+
+    </div>
+</div>
+
+<script>
+
+function goToPage2(){
+    document.getElementById("page1").style.display="none";
+    document.getElementById("page2").style.display="flex";
+}
+
+function yesClicked(){
+    document.querySelector(".button-group").style.display="none";
+    document.getElementById("successMessage").style.display="block";
+}
+
+let noClicks = 0;
+let scale = 1;
+
+function shrinkNo(){
+
+    noClicks++;
+
+    scale -= 0.18;
+
+    const btn = document.getElementById("noBtn");
+
+    if(scale <= 0.2){
+        btn.style.display = "none";
+        return;
+    }
+
+    btn.style.transform = `scale(${scale})`;
+
+    const messages = [
+        "Sure ka? 🤔",
+        "Talaga ba? 😅",
+        "Pag-isipan mo muna 😌",
+        "Hmmm... 🥺",
+        "Last chance 😆"
+    ];
+
+    if(noClicks <= messages.length){
+        btn.innerText = messages[noClicks - 1];
+    }
+}
+
+</script>
+
+</body>
+</html>
